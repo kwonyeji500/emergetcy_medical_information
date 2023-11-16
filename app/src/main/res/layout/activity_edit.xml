@@ -4,26 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".EditActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/goInputActivityButton"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="36dp"
         android:clickable="true"
-        android:src="@drawable/baseline_edit_24"
+        android:src="@drawable/baseline_save_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:clickable="true"
-        android:src="@drawable/baseline_delete_forever_24"
-        app:layout_constraintBottom_toTopOf="@id/goInputActivityButton"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -32,17 +22,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
+        android:inputType="text"
         android:text="이름"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/nameValueTextView"
+    <EditText
+        android:id="@+id/nameEditText"
         style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
-        android:text="권예지권예지권예지권예지권예지권예지권예지"
         app:layout_constraintBaseline_toBaselineOf="@+id/nameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -61,9 +51,20 @@
         style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingEnd="8dp"
         android:text="0000-00-00"
         app:layout_constraintBaseline_toBaselineOf="@+id/birthdateTextView"
-        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintEnd_toStartOf="@+id/birthdateImageView" />
+
+    <ImageView
+        android:id="@+id/birthdateImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_edit_calendar_24"
+        app:layout_constraintBottom_toBottomOf="@id/birthdateTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintTop_toTopOf="@id/birthdateTextView" />
 
     <TextView
         android:id="@+id/bloodTypeTextView"
@@ -74,14 +75,51 @@
         app:layout_constraintStart_toStartOf="@+id/birthdateTextView"
         app:layout_constraintTop_toBottomOf="@+id/birthdateTextView" />
 
-    <TextView
-        android:id="@+id/bloodTypeValueTextView"
-        style="@style/Value"
+    <RadioGroup
+        android:id="@+id/bloodTypeRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextView"
+        app:layout_constraintEnd_toStartOf="@+id/bloodTypeSpinner"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/bloodTypeTextView">
+
+        <RadioButton
+            android:id="@+id/bloodTypePlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RH+" />
+
+        <RadioButton
+            android:id="@+id/bloodTypeMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RH-" />
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/bloodTypeSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="AB"
-        app:layout_constraintBaseline_toBaselineOf="@+id/bloodTypeTextView"
-        app:layout_constraintEnd_toEndOf="@+id/birthdateValueTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextView"
+        app:layout_constraintEnd_toEndOf="@id/nameEditText"
+        app:layout_constraintTop_toTopOf="@id/bloodTypeTextView" />
+
+    <CheckBox
+        android:id="@+id/warningCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end|center_vertical"
+        android:maxLines="2"
+        android:text="주의사항 노출"
+
+        app:layout_constraintBottom_toBottomOf="@+id/cautionTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintStart_toStartOf="@+id/cautionEditText"
+        app:layout_constraintTop_toTopOf="@+id/cautionTextView" />
+
 
     <TextView
         android:id="@+id/emergencyContactTextView"
@@ -92,25 +130,15 @@
         app:layout_constraintStart_toStartOf="@+id/bloodTypeTextView"
         app:layout_constraintTop_toBottomOf="@+id/bloodTypeTextView" />
 
-    <TextView
-        android:id="@+id/emergencyContactValueTextView"
+    <EditText
+        android:id="@+id/emergencyContactEditText"
         style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="010-0000-0000"
+        android:hint="010-0000-0000"
+        android:inputType="phone"
         app:layout_constraintBaseline_toBaselineOf="@+id/emergencyContactTextView"
-        app:layout_constraintEnd_toEndOf="@+id/bloodTypeValueTextView"
-        app:layout_goneMarginEnd="8dp" />
-
-    <ImageView
-        android:id="@+id/phoneImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_phone_24"
-        app:layout_constraintBottom_toBottomOf="@id/emergencyContactValueTextView"
-        app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
-        app:layout_constraintTop_toTopOf="@+id/emergencyContactValueTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText" />
 
     <TextView
         android:id="@+id/cautionTextView"
@@ -121,14 +149,15 @@
         app:layout_constraintStart_toStartOf="@+id/emergencyContactTextView"
         app:layout_constraintTop_toBottomOf="@+id/emergencyContactTextView" />
 
-    <TextView
-        android:id="@+id/cautionValueTextView"
+
+    <EditText
+        android:id="@+id/cautionEditText"
         style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="주의사항"
-        app:layout_constraintBaseline_toBaselineOf="@+id/cautionTextView"
-        app:layout_constraintEnd_toEndOf="@+id/emergencyContactValueTextView" />
+        android:hint="주의사항"
+        app:layout_constraintEnd_toEndOf="@+id/nameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/warningCheckBox" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -138,10 +167,11 @@
         app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.helper.widget.Layer
-        android:id="@+id/emergencyContactLayer"
+        android:id="@+id/birthdateLayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="emergencyContactValueTextView,phoneImageView"
+        app:constraint_referenced_ids="birthdateValueTextView,birthdateImageView"
         tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
